@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Button from "react-bootstrap/Button";
+import {Button} from "@mui/material";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../states/cardSlice";
@@ -41,32 +41,36 @@ const Home = () => {
       <div
         className="container mt-5 mb-5 d-flex flex-wrap "
         style={{ gap: 20 ,minHeight:'90vh'}}>
-        {product.map((items) => (
-          <Card
-            key={items.id}
-            style={{ width: "18rem", height: "fit-content" }}
-          >
-            <Card.Img
-              variant="top"
-              src={items.image}
-              style={{ height: "250px" }}
-            />
-            <Card.Body>
-              <Card.Title>{items.title.slice(0, 40)}</Card.Title>
-              <Card.Text>{items.description.slice(0, 50)}</Card.Text>
-              <div className="display:flex;justifyContent:space-between">
-                <p>Price {items.price}$</p>
-                <p>
-                  categorys:{" "}
-                  <span style={{ color: "red" }}>{items.category}</span>
-                </p>
-              </div>
-              <Button variant="primary" onClick={() => ADDTOCARD(items)}>
-                ADD TO CARD
-              </Button>
-            </Card.Body>
-          </Card>
-        ))}
+   {
+     product.length > 0 ? product.map((items) => (
+      <Card
+        key={items.id}
+        style={{ width: "18rem", height: "fit-content",margin:'auto' }}
+      >
+        <Card.Img
+          variant="top"
+          src={items.image}
+          style={{ height: "250px" }}
+        />
+        <Card.Body>
+          <Card.Title>{items.title.slice(0, 40)}</Card.Title>
+          <Card.Text>{items.description.slice(0, 50)}</Card.Text>
+          <div className="display:flex;justifyContent:space-between">
+            <p>Price {items.price}$</p>
+            <p>
+              categorys:{" "}
+              <span style={{ color: "red" }}>{items.category}</span>
+            </p>
+          </div>
+          <Button variant="contained" onClick={() => ADDTOCARD(items)}>
+            ADD TO CARD
+          </Button>
+        </Card.Body>
+      </Card>
+    )) :<h1 className="text-center">Pleace wait...</h1>
+
+
+   }
          
         <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}

@@ -37,7 +37,7 @@ let Dispatch = useDispatch()
          <h1>Pleace fill the all fealds</h1>
         <input type="text" name="name" placeholder="Enter your name" onChange={textsend}/>
         <input type="number" name="age" placeholder="Enter your age" onChange={textsend}/>
-        <textarea  name="text"  cols="30" placeholder="Enter you massage" rows="3" onChange={textsend}></textarea>
+        <textarea  name="text"   placeholder="Enter you massage"  onChange={textsend} style={{maxWidth:'300px',width:'90%'}}></textarea>
         <button className="btn btn-primary" onClick={funhandel}>submit</button>
       </div>
     </div>

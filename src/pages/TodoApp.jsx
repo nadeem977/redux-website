@@ -6,10 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {addTodo,deleteTodo,deleteAllTodos} from '../states/TodoSlice';
 import { useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 
 
 const TodoApp = () => {
+  // const [selectedTodoIndex, setSelectedTodoIndex] = useState(null);
+  // const [selectedVoice, setSelectedVoice] = useState(null);
+
 
 const navigate = useNavigate();
 const dispatch = useDispatch();
@@ -64,10 +68,20 @@ const handelfunc = (e) => {
       navigate(`/EditTodo/${index}`)
   };
   
-
   const filterTodos = todos.filter((todo) => {
-    return todo.toLowerCase().includes(search.toLowerCase())
+    if (typeof todo === 'string') {
+      return todo.toLowerCase().includes(search.toLowerCase());
+    }
+    return false;
   });
+
+  const handleListen = (index) => {
+    // setSelectedTodoIndex(index);
+    const text = todos[index];
+    const speech = new SpeechSynthesisUtterance(text);
+    // speech.voice = selectedVoice;
+    window.speechSynthesis.speak(speech);
+  };
 
   return (
     <>
@@ -96,32 +110,31 @@ const handelfunc = (e) => {
 
 
        <div className='mt-2'> 
-       <Input placeholder='search...' onChange={(e)=>setSearch(e.target.value)} />
+       <Input placeholder='search...' onChange={(e)=>setSearch(e.target.value)} style={{color:'white'}}/>
        <Button><SearchIcon/></Button><br />
        <p>    Result: {filterTodos.length}</p>
        </div>
 
 
-        {filterTodos.map((item, index) => (
-          <div className="todos" key={index}>
-            <div style={{textTransform:"capitalize"}}><span style={{color:'#1976d2',fontWeight:'600'}}>TODO:</span> {item}</div>
-            <span>
-              <Button
-                variant="contained"
-                className="m-1 "
-                onClick={() => handelEdit(index)}
-              >
-                <ModeEditOutlineIcon /> EDIT
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => handleDelete(index)}
-              >
-                <DeleteForeverIcon /> DELETE
-              </Button>
-            </span>
-          </div>
-        ))}
+       {filterTodos.map((item, index) => (
+  <div className="todos" key={index}>
+    <div style={{ textTransform: "capitalize" }}>
+      <span style={{ color: '#1976d2', fontWeight: '600' }}>TODO:</span> {item}
+    </div>
+    <div className='todobtns' style={{display:'flex',gap:10}}>
+      <Button variant="contained" className="m-1" onClick={() => handelEdit(index)}>
+        <ModeEditOutlineIcon /> EDIT
+      </Button>
+      <Button variant="contained" onClick={() => handleDelete(index)}>
+        <DeleteForeverIcon /> DELETE
+      </Button>
+      <Button variant="contained" onClick={() => handleListen(index)}>
+        <PlayArrowIcon />
+      </Button>
+    </div>
+  </div>
+))}
+
       </div>
     </>
   );

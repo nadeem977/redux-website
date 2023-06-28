@@ -9,8 +9,8 @@ import Enterimag from './pages/Enterimag';
 import Users from "./pages/Users";
 import TodoApp from "./pages/TodoApp";
 import EditTodo from "./pages/EditTodo";
-
-
+import Voice from "./pages/Voice";
+import VoiceToText from "./pages/VoiceToText";
 function App() {
   return (
     <div className="App">
@@ -25,6 +25,8 @@ function App() {
           <Route path="/Users" element={<Users/>}/>
           <Route path="/TodoApp" element={<TodoApp/>}/>
           <Route path="/EditTodo/:index" element={<EditTodo/>}/>
+          <Route path="/Voice" element={<Voice/>}/>
+          <Route path="/VoiceToText" element={<VoiceToText/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

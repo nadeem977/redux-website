@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState =[];
+const initialState = [];
 const textSlice = createSlice({
-    name: 'data',
-    initialState,
-    reducers: {
-        getText(state, action) {
-            state.push(action.payload); 
-        },
-        getimg(state,action){
-            state.push(action.payload);
-        }
-    }
+  name: 'data',
+  initialState,
+  reducers: {
+    getText(state, action) {
+      state.push(action.payload);
+    },
+    getImg(state, action) {
+      state.push(action.payload);
+    },
+  },
 });
 
-export const {getText,getimg} = textSlice.actions; 
+export const { getText, getImg } = textSlice.actions;
 export default textSlice.reducer;

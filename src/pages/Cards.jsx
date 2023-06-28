@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector,useDispatch } from "react-redux";
-import {Button ,Card} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import {remove} from '../states/cardSlice'
-
+import {Button} from '@mui/material'
 const Cards = () => {
   const Despatvh = useDispatch()
   const products = useSelector((state) => state.card);
@@ -13,7 +13,7 @@ const Cards = () => {
   return (
     <>
 
-    <h1 className="text-center mt-5 pt-5"> Hire you can add you Items</h1>
+    <h1 className="text-center mt-5 pt-5"> Here You Can Add You Items {products.length}</h1>
       <div
         className="container mt-5 mb-5 d-flex flex-wrap "
         style={{ gap: 20 ,minHeight:'90vh'}}
@@ -38,7 +38,7 @@ const Cards = () => {
                   <span style={{ color: "red" }}>{items.category}</span>
                 </p>
               </div>
-              <Button variant="danger"  onClick={()=>removeCard(items.id)}>
+              <Button color="error" variant="contained"  onClick={()=>removeCard(items.id)}>
                Remove items
               </Button>
             </Card.Body>

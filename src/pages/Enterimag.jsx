@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getimg } from '../states/textSlice';
+import { getImg } from '../states/textSlice';
 import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+
 
 
 const EnterImage = () => {
 
-
-  const {id} = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [image, setImage] = useState({});
-
+  const [image, setImage] = useState();
+console.log(image)
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -24,7 +22,7 @@ const EnterImage = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(getimg({id:id, image}));
+    dispatch(getImg({image}));
     navigate('/Gallery');
   };
 
