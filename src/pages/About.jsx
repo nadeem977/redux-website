@@ -34,7 +34,7 @@ let Dispatch = useDispatch()
   return (
     <div className="container mt-5 pt-5">
       <div className="d-flex" style={{display:'flex',justifyContent:'center',alignItems:'center',height:'90vh',flexDirection:'column',gap:'20px'}}>
-         <h1>Pleace fill the all fealds</h1>
+         <h1>Please fill in all fields</h1>
         <input type="text" name="name" placeholder="Enter your name" onChange={textsend}/>
         <input type="number" name="age" placeholder="Enter your age" onChange={textsend}/>
         <textarea  name="text"   placeholder="Enter you massage"  onChange={textsend} style={{maxWidth:'300px',width:'90%'}}></textarea>
